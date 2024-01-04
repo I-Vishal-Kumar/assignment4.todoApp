@@ -53,7 +53,7 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: {
-      secure: "auto",
+      secure: true,
       sameSite: "none",
       maxAge: one_day,
     },
