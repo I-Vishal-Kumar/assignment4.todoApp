@@ -52,7 +52,10 @@ app.use(
     secret: "vishal",
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: one_day },
+    cookie: {
+      sameSite: "none",
+      maxAge: one_day,
+    },
     store: store,
   })
 );
