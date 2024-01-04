@@ -4,7 +4,6 @@ const JWT = require("jsonwebtoken");
 
 function authorised(req, res, next) {
   const authHeader = req.headers["authorization"];
-  console.log(authHeader);
   if (!authHeader)
     return res.status(401).json({ status: 0, message: "Login again !" });
 

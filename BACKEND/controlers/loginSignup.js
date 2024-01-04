@@ -11,7 +11,7 @@ class loginSignup {
     try {
       user_name = user_name.trim();
       // GENERATE THE ACCESS TOKEN AND REFRESH TOKEN
-      const access_token = JWT.sign({ user_id }, ACCESS_SECRET, {
+      const access_token = JWT.sign({ user_name }, ACCESS_SECRET, {
         expiresIn: "10m",
       });
       const refresh_token = JWT.sign({ user_name }, REFRESH_SECRET, {
@@ -19,7 +19,6 @@ class loginSignup {
       });
       let is_created = await USER.create({
         user_name,
-        refreshToken: refresh_token,
       });
       res.cookie("jwt", refresh_token, {
         httpOnly: true,
@@ -34,6 +33,7 @@ class loginSignup {
         });
       return res.send({ status: "err", message: "something went wrong" });
     } catch (error) {
+      console.log(error);
       if (error?.code === 11000) {
         return res.status(409).json({
           status: "err",
@@ -61,17 +61,7 @@ class loginSignup {
         ACCESS_SECRET,
         { expiresIn: "15m" }
       );
-      const refresh_token = JWT.sign(
-        { user_name: is_created.user_name },
-        REFRESH_SECRET,
-        { expiresIn: "1d" }
-      );
-      await USER.findOneAndUpdate(
-        { user_name: is_created.user_name },
-        {
-          refreshToken: refresh_token,
-        }
-      );
+
       return res.send({ status: "ok", message: "Logged in", access_token });
     } catch (error) {
       return res.send({

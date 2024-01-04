@@ -31,6 +31,7 @@ class todoControler {
             heading,
             content,
             user_name: req.user_name,
+            updated_at: `${new Date()}`,
           }
         );
         if (!response) {
