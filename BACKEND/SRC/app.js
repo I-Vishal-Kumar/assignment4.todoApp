@@ -53,8 +53,8 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: {
-      secure: true,
-      sameSite: "none",
+      // secure: true,
+      // sameSite: "none",
       maxAge: one_day,
     },
     store: store,

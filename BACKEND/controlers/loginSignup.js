@@ -3,9 +3,6 @@ const { USER } = require("../MODALS/db");
 class loginSignup {
   static SIGNUP = async (req, res) => {
     let { user_name } = req.body;
-    req.session.destroy();
-    console.log(req.body);
-    res.clearCookie("id");
     if (!user_name)
       return res.send({ status: "err", message: "Enter a valid name" });
 
