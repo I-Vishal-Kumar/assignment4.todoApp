@@ -57,6 +57,7 @@ app.use(
       sameSite: "None",
       domain: WHITE_LIST,
       maxAge: one_day,
+      httpOnly: true,
     },
     store: store,
   })

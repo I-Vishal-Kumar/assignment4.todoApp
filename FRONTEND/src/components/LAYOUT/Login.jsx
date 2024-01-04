@@ -38,6 +38,7 @@ const Login = () => {
       response = await response.json();
 
       if (response?.status === "ok") {
+        console.log(response.access_token);
         navigate("/home");
       }
       alert(response?.message);
@@ -62,6 +63,7 @@ const Login = () => {
       );
       response = await response.json();
       if (response?.status === "ok") {
+        console.log(response.access_token);
         navigate("/home");
       }
       alert(response?.message || "something went wrong");
