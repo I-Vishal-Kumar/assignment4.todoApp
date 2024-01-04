@@ -72,7 +72,6 @@ class loginSignup {
           refreshToken: refresh_token,
         }
       );
-      req.session.user_name = is_created.user_name;
       return res.send({ status: "ok", message: "Logged in", access_token });
     } catch (error) {
       return res.send({

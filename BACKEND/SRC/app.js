@@ -5,6 +5,7 @@ const cors = require("cors");
 const session = require("express-session");
 const { todoControler } = require("../controlers/todoControler");
 const { loginSignup } = require("../controlers/loginSignup");
+const { authorised } = require("../MIDDLEWARE/authorized");
 const MongoDBStore = require("connect-mongodb-session")(session);
 
 const mongoose = require("mongoose");
@@ -66,6 +67,6 @@ app.use(
 app.post("/login", loginSignup.LOGIN);
 app.post("/signup", loginSignup.SIGNUP);
 
-app.post("/create_note", todoControler.create_todo);
-app.get("/retrive_notes", todoControler.get_todo);
-app.post("/delete_note", todoControler.delete_todo);
+app.post("/create_note", authorised, todoControler.create_todo);
+app.get("/retrive_notes", authorised, todoControler.get_todo);
+app.post("/delete_note", authorised, todoControler.delete_todo);

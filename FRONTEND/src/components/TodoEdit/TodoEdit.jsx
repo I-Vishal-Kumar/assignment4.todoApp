@@ -27,6 +27,7 @@ const TodoEdit = () => {
         credentials: "include",
         headers: {
           "content-type": "application/json",
+          Authorization: window.localStorage.getItem("access_token"),
         },
       };
       let res = await fetch(
@@ -55,6 +56,7 @@ const TodoEdit = () => {
       credentials: "include",
       headers: {
         "content-type": "application/json",
+        Authorization: window.localStorage.getItem("access_token"),
       },
       body: JSON.stringify(data),
     };

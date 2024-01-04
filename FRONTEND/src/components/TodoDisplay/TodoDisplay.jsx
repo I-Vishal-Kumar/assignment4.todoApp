@@ -17,6 +17,7 @@ const TodoDisplay = () => {
           credentials: "include",
           headers: {
             "content-type": "application/json",
+            Authorization: window.localStorage.getItem("access_token"),
           },
         };
         let res = await fetch(

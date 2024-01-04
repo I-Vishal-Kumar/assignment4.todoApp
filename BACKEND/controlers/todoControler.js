@@ -2,9 +2,9 @@ const { TODO } = require("../MODALS/db");
 
 class todoControler {
   static create_todo = async (req, res) => {
-    if (!req?.session?.user_name)
+    if (!req?.user_name)
       return res.status(401).json({ status: 0, message: "Login again" });
-    const user_name = req?.session?.user_name;
+    const user_name = req?.user_name;
     try {
       let { heading, content, id } = req.body;
 
@@ -22,7 +22,7 @@ class todoControler {
           heading,
           content,
           id: id === 0 ? Math.floor(Math.random() * 9000 + 1000) : id,
-          user_name: req.session.user_name,
+          user_name: req.user_name,
         });
       } else {
         response = await TODO.findOneAndUpdate(
@@ -30,7 +30,7 @@ class todoControler {
           {
             heading,
             content,
-            user_name: req.session.user_name,
+            user_name: req.user_name,
           }
         );
         if (!response) {
@@ -50,9 +50,9 @@ class todoControler {
   };
 
   static get_todo = async (req, res) => {
-    if (!req?.session?.user_name)
+    if (!req?.user_name)
       return res.status(401).json({ status: 0, message: "Login again" });
-    const user_name = req.session.user_name;
+    const user_name = req.user_name;
     try {
       let response = await TODO.find({ user_name }, { _id: 0 });
       if (!response) throw new Error("no todo found");
@@ -66,9 +66,9 @@ class todoControler {
   };
 
   static delete_todo = async (req, res) => {
-    if (!req?.session?.user_name)
+    if (!req?.user_name)
       return res.status(401).json({ status: 0, message: "Login again" });
-    const user_name = req.session.user_name;
+    const user_name = req.user_name;
     let { id } = req.body;
     if (!id)
       return res.send({ status: "err", message: "something went wrong" });
