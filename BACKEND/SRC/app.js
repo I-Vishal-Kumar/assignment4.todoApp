@@ -53,8 +53,9 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: {
-      // secure: true,
-      // sameSite: "none",
+      secure: true,
+      sameSite: "None",
+      domain: WHITE_LIST,
       maxAge: one_day,
     },
     store: store,
