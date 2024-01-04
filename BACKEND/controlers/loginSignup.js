@@ -3,14 +3,18 @@ const { USER } = require("../MODALS/db");
 class loginSignup {
   static SIGNUP = async (req, res) => {
     let { user_name } = req.body;
+    req.session.destroy();
+    console.log(req.body);
+    res.clearCookie("id");
     if (!user_name)
       return res.send({ status: "err", message: "Enter a valid name" });
 
     try {
       user_name = user_name.trim();
-      let is_created = USER.create({
+      let is_created = await USER.create({
         user_name,
       });
+
       if (is_created)
         return res.send({ status: "ok", message: "user created" });
       return res.send({ status: "err", message: "something went wrong" });

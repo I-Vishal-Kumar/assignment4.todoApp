@@ -50,7 +50,8 @@ const Login = () => {
     try {
       let config = {
         method: "POST",
-        header: {
+        credentials: "include",
+        headers: {
           "content-type": "application/json",
         },
         body: JSON.stringify(r_details),
@@ -60,8 +61,10 @@ const Login = () => {
         config
       );
       response = await response.json();
+      if (response?.status === "ok") {
+        navigate("/home");
+      }
       alert(response?.message || "something went wrong");
-      navigate("/home");
     } catch (error) {
       alert(error?.response?.data?.message || "something went wrong");
     }
