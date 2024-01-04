@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Ink-Free";
+  font-weight: 400;
+  src: url("../fonts/ink-font/Inkfree1.ttf") format("truetype"),
+    url("../fonts/Caveat/Caveat-VariableFont_wght.ttf") format("truetype");
+}
+* {
+  /* font-family: "Ink-Free"; */
+  font-family: "Caveat", cursive;
+}
+
+:root {
+  font-family: "Ink-Free";
+  line-height: 1.5;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background-color: #ffffff;
+  color: rgb(34, 34, 34);
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}

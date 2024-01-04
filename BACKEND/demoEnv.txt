@@ -1,0 +1,2 @@
+DB_LINK = "Your mongo db URI"
+FRONTEND_LINK = "your frontend url"
